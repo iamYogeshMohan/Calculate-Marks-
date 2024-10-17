@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marks Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Marks Calculator</h2>
+        <form id="marksForm">
+            <input type="number" id="subject1" placeholder="Enter marks for Subject 1" required>
+            <input type="number" id="subject2" placeholder="Enter marks for Subject 2" required>
+            <input type="number" id="subject3" placeholder="Enter marks for Subject 3" required>
+            <input type="number" id="subject4" placeholder="Enter marks for Subject 4" required>
+            <input type="number" id="subject5" placeholder="Enter marks for Subject 5" required>
+            <button type="button" onclick="calculateResults()">Calculate</button>
+        </form>
+        <div class="result">
+            <p id="totalMarks"></p>
+            <p id="average"></p>
+            <p id="percentage"></p>
+            <p id="status"></p>
+        </div>
+    </div>
+
+    <script>
+        function calculateResults() {
+            // Get the marks from the input fields
+            let subject1 = parseFloat(document.getElementById("subject1").value);
+            let subject2 = parseFloat(document.getElementById("subject2").value);
+            let subject3 = parseFloat(document.getElementById("subject3").value);
+            let subject4 = parseFloat(document.getElementById("subject4").value);
+            let subject5 = parseFloat(document.getElementById("subject5").value);
+
+            // Calculate total marks, average, and percentage
+            let total = subject1 + subject2 + subject3 + subject4 + subject5;
+            let average = total / 5;
+            let percentage = (total / 500) * 100;
+
+            // Determine pass or fail (assuming passing marks are 35 for each subject)
+            let status = (subject1 >= 35 && subject2 >= 35 && subject3 >= 35 && subject4 >= 35 && subject5 >= 35) 
+                         ? "Pass" : "Fail";
+
+            // Display the results
+            document.getElementById("totalMarks").innerText = "Total Marks: " + total;
+            document.getElementById("average").innerText = "Average Marks: " + average.toFixed(2);
+            document.getElementById("percentage").innerText = "Percentage: " + percentage.toFixed(2) + "%";
+            document.getElementById("status").innerText = "Result: " + status;
+        }
+    </script>
+</body>
+</html>
